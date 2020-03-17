@@ -42,6 +42,11 @@
         function process(event) {
             var msg = event.Get("message");
             var json_dict = headers_fn(msg);
+
+            // If the current event was triggered to process the header row,
+            // then the json_dict will be empty - it only returns a json dict
+            // for subsequent rows. Therefore, cancel the event so that nothing
+            // is sent to the output.
             if (!json_dict) {
               event.Cancel();
             }
