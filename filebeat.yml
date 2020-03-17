@@ -1,7 +1,3 @@
-###################### Filebeat Configuration Example #########################
-max_procs: 1
-filebeat.registry.path: ${PWD}/my_reg
-
 filebeat.inputs:
 - type: log
   enabled: true
@@ -9,12 +5,25 @@ filebeat.inputs:
   paths:
     - /Users/arm/Documents/ES/ES7.5.0/filebeat-7.5.2-darwin-x86_64/test.csv
 
+
   processors:
+  - decode_csv_fields:
+      fields:
+        message: decoded_csv_arr
+      separator: ","
+      ignore_missing: false
+      overwrite_keys: true
+      trim_leading_space: false
+      fail_on_error: true
+
   - script:
       lang: javascript
       id: convert_csv_into_json
       file: ${PWD}/convert_csv_to_json.js
 
+
+#output.elasticsearch:
+ # hosts: ["localhost:9200"]
 
 output.console:
   pretty: true
