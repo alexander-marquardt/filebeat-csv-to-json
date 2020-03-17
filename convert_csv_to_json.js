@@ -37,7 +37,8 @@
         })();  
 
         
-
+        // This function is called for each "event" 
+        // (eg. called once for each line in the log file)
         function process(event) {
             var msg = event.Get("message");
             var json_dict = headers_fn(msg);
