@@ -1,5 +1,6 @@
 ###################### Filebeat Configuration Example #########################
 max_procs: 1
+filebeat.registry.path: ${PWD}/my_reg
 
 filebeat.inputs:
 - type: log
