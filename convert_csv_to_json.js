@@ -5,12 +5,12 @@
         // contains field values, and returns a json dictionary that combines them.
 
         function convert_csv_to_dict(csv_headers_row, csv_values_row) {
-          var result =  csv_values_row.reduce(function(result, field, index) {
+          var json_dict =  csv_values_row.reduce(function(result, field, index) {
             result[csv_headers_row[index]] = field;
             return result;
           }, {})
 
-          return result;
+          return json_dict;
         }
 
 
