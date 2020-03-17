@@ -1,3 +1,5 @@
+max_procs: 1 # required to ensure that the header is available for all CSV lines
+ 
 filebeat.inputs:
 - type: log
   enabled: true
@@ -23,9 +25,15 @@ filebeat.inputs:
 
   - drop_fields:
       fields: ["decoded_csv_arr"]
-      
+
 output.elasticsearch:
   hosts: ["localhost:9200"]
 
-#output.console:
-#  pretty: true
+  index: "csv_to_json-%{+YYYY.MM.dd}" 
+
+setup.ilm.enabled: false
+setup.template.enabled: false
+
+
+# output.console:
+#   pretty: true
