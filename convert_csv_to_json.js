@@ -3,7 +3,6 @@
 
         // This function takes an array containing the field names, and another that
         // contains field values, and returns a json dictionary that combines them.
-
         function convert_csv_to_dict(csv_headers_row, csv_values_row) {
           var json_dict =  csv_values_row.reduce(function(result, field, index) {
             result[csv_headers_row[index]] = field;
