@@ -14,7 +14,7 @@
         }
 
 
-        // self-calling javascript function that will be used to combine the 
+        // Define the Javascript function that will be used to combine the 
         // header row with subsequent rows in the CSV file
         var headers_fn = (function() {
 
@@ -45,7 +45,7 @@
 
             // If the current event was triggered to process the header row,
             // then the json_dict will be empty - it only returns a json dict
-            // for subsequent rows. Therefore, cancel the event so that nothing
+            // for subsequent rows. Cancel the event so that nothing
             // is sent to the output.
             if (!json_dict) {
               event.Cancel();
