@@ -3,7 +3,7 @@ filebeat.inputs:
   enabled: true
   close_eof: true
   paths:
-    - /Users/arm/Documents/ES/ES7.5.0/filebeat-7.5.2-darwin-x86_64/test.csv
+    - ${PWD}/test.csv
 
 
   processors:
@@ -21,9 +21,11 @@ filebeat.inputs:
       id: convert_csv_into_json
       file: ${PWD}/convert_csv_to_json.js
 
+  - drop_fields:
+      fields: ["decoded_csv_arr"]
+      
+output.elasticsearch:
+  hosts: ["localhost:9200"]
 
-#output.elasticsearch:
- # hosts: ["localhost:9200"]
-
-output.console:
-  pretty: true
+#output.console:
+#  pretty: true
